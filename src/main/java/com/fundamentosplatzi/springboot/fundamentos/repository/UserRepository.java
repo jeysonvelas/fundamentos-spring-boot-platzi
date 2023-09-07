@@ -12,6 +12,8 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
+
+    //Querys JPQL
     @Query("Select u From User u WHERE u.email=?1")
     Optional<User> findByUserEmail(String email);
 
@@ -20,6 +22,13 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("Select u From User u")
     List<User> findByAll(User user);
+
+
+    //Query Methods
+
+    List<User> findByName(String name);
+
+    List<User> findByNameLikeOrderByNameAsc(String name);
 
 
 }

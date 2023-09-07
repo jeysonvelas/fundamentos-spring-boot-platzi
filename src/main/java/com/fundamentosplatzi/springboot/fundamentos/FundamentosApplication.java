@@ -46,21 +46,25 @@ public class FundamentosApplication implements CommandLineRunner {
 		//componentDependency.saludar();
 		//myBean.print();
 		saveUser();
-		findEmail();
-	}
-
-
-	public void findEmail(){
-
-		LOGGER.info("Ususario encontrado: " +
-				userRepository.findByUserEmail("jeysonvelasquez.v@gmail.com").orElseThrow(() -> new RuntimeException("No se encontro usuario")));
-
-		userRepository.findAndSort("j" , Sort.by("birthDate").ascending()).stream().forEach(user -> LOGGER.info("Usuarios encontrados: " + user));
-
-		userRepository.findByAll(new User()).stream().forEach(user -> LOGGER.info("Usuarios encontrados: " + user ));
+		findUsers();
 
 	}
 
+
+	public void findUsers(){
+
+		//LOGGER.info("Ususario encontrado: " +	userRepository.findByUserEmail("jeysonvelasquez.v@gmail.com").orElseThrow(() -> new RuntimeException("No se encontro usuario")));
+
+		//userRepository.findAndSort("j" , Sort.by("birthDate").ascending()).stream().forEach(user -> LOGGER.info("Usuarios encontrados: " + user));
+
+		//userRepository.findByAll(new User()).stream().forEach(user -> LOGGER.info("Usuarios encontrados: " + user.getName() ));
+
+		//uso de Query Methods
+		userRepository.findByName("jeyson").stream().forEach(user -> LOGGER.info("Usuarios encontrado: " + user));
+		userRepository.findByNameLikeOrderByNameAsc("%j%").stream().forEach(user -> LOGGER.info("Usuarios encontrados: " + user.getName()));
+
+
+	}
 
 	public void saveUser(){
 
