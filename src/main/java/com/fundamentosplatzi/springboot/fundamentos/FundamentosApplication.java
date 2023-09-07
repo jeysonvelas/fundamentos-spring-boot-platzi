@@ -57,8 +57,8 @@ public class FundamentosApplication implements CommandLineRunner {
 
 		userRepository.findAndSort("j" , Sort.by("birthDate").ascending()).stream().forEach(user -> LOGGER.info("Usuarios encontrados: " + user));
 
-		//userRepository.findByAll(new User()).stream().forEach(user -> LOGGER.info("Usuarios encontrados: " + user ));
-		userRepository.findByAll(new User(), Sort.by("name").ascending()).stream().forEach(user -> LOGGER.info("Usuarios encontrados: " + user));
+		userRepository.findByAll(new User()).stream().forEach(user -> LOGGER.info("Usuarios encontrados: " + user ));
+
 	}
 
 

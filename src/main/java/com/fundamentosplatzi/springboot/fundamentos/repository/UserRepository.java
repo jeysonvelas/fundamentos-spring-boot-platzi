@@ -19,7 +19,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findAndSort(String name, Sort sort);
 
     @Query("Select u From User u")
-    List<User> findByAll(User user, Sort sort);
+    List<User> findByAll(User user);
 
 
 }
