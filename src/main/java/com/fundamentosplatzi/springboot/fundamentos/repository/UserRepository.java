@@ -17,13 +17,13 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 
     //Querys JPQL
-    @Query("Select u From User u WHERE u.email=?1")
+    @Query("SELECT u FROM User u WHERE u.email=?1")
     Optional<User> findByUserEmail(String email);
 
-    @Query("Select u From User u WHERE u.name like ?1%")
+    @Query("SELECT u FROM User u WHERE u.name like ?1%")
     List<User> findAndSort(String name, Sort sort);
 
-    @Query("Select u From User u")
+    @Query("SELECT u FROM User u")
     List<User> findByAll(User user);
 
 
@@ -33,9 +33,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findByNameLikeOrderByNameAsc(String name);
 
-    @Query("SELECT new com.fundamentosplatzi.springboot.fundamentos.dto.UserDTO(u.id, u.name, u.birthDate)" +
-            "FROM User u" +
-            "WHERE u.birthDate=:parametroFecha" +
+    @Query("SELECT new com.fundamentosplatzi.springboot.fundamentos.dto.UserDto(u.id, u.name, u.birthDate)" +
+            "FROM User u " +
+            "WHERE u.birthDate=:parametroFecha " +
             "AND u.email=:parametroEmail")
     Optional<UserDto> getAllByBirthDateAndEmail(@Param("parametroFecha") LocalDate date,
                                                 @Param("parametroEmail") String email);

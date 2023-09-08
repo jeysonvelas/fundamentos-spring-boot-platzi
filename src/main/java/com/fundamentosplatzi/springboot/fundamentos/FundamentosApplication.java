@@ -4,6 +4,7 @@ import com.fundamentosplatzi.springboot.fundamentos.bean.MyBean;
 import com.fundamentosplatzi.springboot.fundamentos.component.ComponentDependency;
 import com.fundamentosplatzi.springboot.fundamentos.entity.User;
 import com.fundamentosplatzi.springboot.fundamentos.repository.UserRepository;
+import com.fundamentosplatzi.springboot.fundamentos.service.UserService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.domain.Sort;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,6 +23,9 @@ public class FundamentosApplication implements CommandLineRunner {
 
 
 	private final Log LOGGER = LogFactory.getLog(FundamentosApplication.class);
+
+	@Autowired
+	private UserService userService;
 	@Autowired
 	@Qualifier("componentTwoImplement")
 	private ComponentDependency componentDependency;
@@ -45,9 +48,9 @@ public class FundamentosApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		//componentDependency.saludar();
 		//myBean.print();
-		saveUser();
-		findUsers();
-
+		//saveUser();
+		//findUsers();
+		saveWithTransaction();
 	}
 
 
@@ -81,5 +84,19 @@ public class FundamentosApplication implements CommandLineRunner {
 
 	}
 
+	public void saveWithTransaction(){
+
+		User test1 = new User("TestTransactional1", "TestTransactional1@domain.com", LocalDate.now());
+		User test2 = new User("TestTransactional2", "TestTransactional2@domain.com", LocalDate.now());
+		User test3 = new User("TestTransactional3", "TestTransactional3@domain.com", LocalDate.now());
+		User test4 = new User("TestTransactional4", "TestTransactional4@domain.com", LocalDate.now());
+
+		List<User> users = Arrays.asList(test1, test2, test3, test4);
+
+		userService.saveTransaccional(users);
+
+		userService.getAllUsers().stream().forEach(user -> LOGGER.info("Este es el usuario dentro del metodo transaccional: " + user));
+
+	}
 
 }
