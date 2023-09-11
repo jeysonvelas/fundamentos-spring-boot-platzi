@@ -31,7 +31,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findByName(String name);
 
-    List<User> findByNameLikeOrderByNameAsc(String name);
+    List<User> findByNameLikeOrderByIdAsc(String name);
 
     @Query("SELECT new com.fundamentosplatzi.springboot.fundamentos.dto.UserDto(u.id, u.name, u.birthDate)" +
             "FROM User u " +

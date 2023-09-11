@@ -64,7 +64,7 @@ public class FundamentosApplication implements CommandLineRunner {
 
 		//uso de Query Methods
 		//userRepository.findByName("jeyson").stream().forEach(user -> LOGGER.info("Usuarios encontrado: " + user));
-		//userRepository.findByNameLikeOrderByNameAsc("%j%").stream().forEach(user -> LOGGER.info("Usuarios encontrados: " + user.getName()));
+		//userRepository.findByNameLikeOrderByIdAsc("%j%").stream().forEach(user -> LOGGER.info("Usuarios encontrados: " + user.getName()));
 
 		//Uso de JPQL con named parameter
 		//LOGGER.info("El Ususario encontrado a partir del named Parameter es: " + userRepository.getAllByBirthDateAndEmail(LocalDate.of(1986, 8, 5),"jeysonvelasquez.v@gmail.com").orElseThrow(() -> new RuntimeException("No se encontro el usuario")));
