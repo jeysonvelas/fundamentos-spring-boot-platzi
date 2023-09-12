@@ -41,20 +41,11 @@ public class UserRestController {
 
     }
 
-
     //Servicio Rest para guardar un nuevo usuario
     @PostMapping("/")
     ResponseEntity<User> newUser(@RequestBody User newUser){
 
         return new ResponseEntity<>(createUser.save(newUser), HttpStatus.CREATED);
-
-    }
-
-    //Servicio Rest para eliminar usuarios
-    @DeleteMapping("/{id}")
-    ResponseEntity deleteUser(@PathVariable Long id){
-        deleteUser.remove(id);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
 
     }
 
@@ -66,9 +57,12 @@ public class UserRestController {
 
     }
 
+    //Servicio Rest para eliminar usuarios
+    @DeleteMapping("/{id}")
+    ResponseEntity deleteUser(@PathVariable Long id){
+        deleteUser.remove(id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
 
-
-
-
+    }
 
 }
