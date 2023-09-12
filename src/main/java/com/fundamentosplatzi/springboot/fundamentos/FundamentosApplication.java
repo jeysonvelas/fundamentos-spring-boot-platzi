@@ -86,12 +86,12 @@ public class FundamentosApplication implements CommandLineRunner {
 
 	public void saveWithTransaction(){
 
-		User test1 = new User("TestTransactional1", "TestTransactional1@domain.com", LocalDate.now());
-		User test2 = new User("TestTransactional2", "TestTransactional2@domain.com", LocalDate.now());
-		User test3 = new User("TestTransactional3", "TestTransactional3@domain.com", LocalDate.now());
-		User test4 = new User("TestTransactional4", "TestTransactional4@domain.com", LocalDate.now());
+		User user1 = new User("jeyson", "jeysonvelasquez.v@gmail.com", LocalDate.of(1986, 8, 5));
+		User user2 = new User("jose", "jose@gmail.com", LocalDate.of(1990, 6, 11));
+		User user3 = new User("jackson", "jackson@gmail.com", LocalDate.of(1994, 10, 8));
+		User user4 = new User("josue", "josue@gmail.com", LocalDate.of(1988, 11, 20));
 
-		List<User> users = Arrays.asList(test1, test2, test3, test4);
+		List<User> users = Arrays.asList(user1, user2, user3, user4);
 
 		userService.saveTransaccional(users);
 

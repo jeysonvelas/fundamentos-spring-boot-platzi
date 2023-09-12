@@ -9,7 +9,6 @@ import java.util.List;
 @Entity
 @Table(name = "user")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_user", nullable = false, unique = true)
@@ -23,6 +22,10 @@ public class User {
     private List<Post> posts = new ArrayList<>();
 
     public User() {
+    }
+
+    public User(Long id) {
+        this.id = id;
     }
 
     public User(String name, String email, LocalDate birthDate) {

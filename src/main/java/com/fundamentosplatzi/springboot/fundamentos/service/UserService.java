@@ -16,6 +16,8 @@ public class UserService {
     private UserRepository userRepository;
     private final Log LOG = LogFactory.getLog(UserService.class);
 
+
+    //Metodo Save con Transactional para que se realice el flujo de la transaccion y realice rollback en caso de que se genere inconsistencia.
     @Transactional
     public void saveTransaccional(List<User> users) {
 
@@ -23,11 +25,37 @@ public class UserService {
 
     }
 
+    //Metodo get sencillo o estandar, para encontrar todos los usuarios insertados.
+
     public List<User> getAllUsers() {
 
         return userRepository.findAll();
 
     }
 
+    //Metodo save sencillo o estandar, para registrar nuevo usuarios.
+    public User save(User newUser){
 
+        return userRepository.save(newUser);
+
+    }
+
+
+    public void delete(Long id) {
+        userRepository.deleteById(id);
+
+    }
+
+
+    public User update(User newUser, Long id) {
+        return userRepository.findById(id)
+                .map(
+                        user -> {
+                            user.setEmail(newUser.getEmail());
+                            user.setBirthDate(newUser.getBirthDate());
+                            user.setName(newUser.getName());
+                            return  userRepository.save(user);
+                        }
+                ) .orElseThrow(() -> new RuntimeException("No se encontró el usuario con el ID proporcionado: " + id));
+    }
 }
