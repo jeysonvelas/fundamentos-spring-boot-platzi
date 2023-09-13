@@ -5,6 +5,7 @@ import com.fundamentosplatzi.springboot.fundamentos.caseuse.DeleteUser;
 import com.fundamentosplatzi.springboot.fundamentos.caseuse.GetUser;
 import com.fundamentosplatzi.springboot.fundamentos.caseuse.UpdateUser;
 import com.fundamentosplatzi.springboot.fundamentos.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,23 +16,14 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserRestController {
 
-
-
-    //create, get, delete, update
+    @Autowired
     private GetUser getUser;
+    @Autowired
     private CreateUser createUser;
-
+    @Autowired
     private DeleteUser deleteUser;
-
+    @Autowired
     private UpdateUser updateUser;
-
-    public UserRestController(GetUser getUser, CreateUser createUser, DeleteUser deleteUser, UpdateUser updateUser) {
-        this.getUser = getUser;
-        this.createUser = createUser;
-        this.deleteUser = deleteUser;
-        this.updateUser = updateUser;
-    }
-
 
     //Servicio Rest para obtener una Lista
     @GetMapping("/")
