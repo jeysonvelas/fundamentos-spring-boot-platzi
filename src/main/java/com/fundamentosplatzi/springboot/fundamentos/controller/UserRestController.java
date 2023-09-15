@@ -35,25 +35,26 @@ public class UserRestController {
 
     //Servicio Rest para guardar un nuevo usuario
     @PostMapping("/")
-    ResponseEntity<User> newUser(@RequestBody User newUser){
-
-        return new ResponseEntity<>(createUser.save(newUser), HttpStatus.CREATED);
+    @ResponseStatus(HttpStatus.OK)
+    public void createUsers(@RequestBody User newUser){
+    createUser.save(newUser);
 
     }
 
     //Servicio Rest para Actualizar un usuario
     @PutMapping("/{id}")
-    ResponseEntity<User> updateServiceUser(@RequestBody User newUser, @PathVariable Long id){
-        return new ResponseEntity<>(updateUser.update(newUser, id), HttpStatus.OK);
+    @ResponseStatus(HttpStatus.OK)
+    public void updateServiceUser(@RequestBody User newUser, @PathVariable Long id){
+        updateUser.update(newUser,id);
 
 
     }
 
     //Servicio Rest para eliminar usuarios
     @DeleteMapping("/{id}")
-    ResponseEntity deleteUser(@PathVariable Long id){
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteUser(@PathVariable Long id){
         deleteUser.remove(id);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
 
     }
 

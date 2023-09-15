@@ -11,9 +11,9 @@ public class CreateUser {
     @Autowired
     private UserService userService;
 
-    public User save(User newUsers){
+    public User save(User newUser){
 
-        return userService.save(newUsers);
+        return userService.save(newUser);
 
     }
 
